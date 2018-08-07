@@ -1,0 +1,11 @@
+<div *ngIf="hasResults()" class="autocomplete">
+  <ul>
+    <li *ngFor="let result of results">
+      <autocomplete-result
+          *ngIf="result"
+          [result]="result"
+          (onSuggestionSelected)="handleSuggestionSelected($event)">
+      </autocomplete-result>
+    </li>
+  </ul>
+</div>

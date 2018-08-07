@@ -1,0 +1,44 @@
+@import '~@code.gov/code-gov-style/_sass/_variables';
+
+.search-input-wrapper {
+  position: relative;
+
+  .autocomplete-container {
+    display: none;
+    position: absolute;
+    width: 100%;
+
+    @media screen and (min-width: $small-screen) {
+      display: block;
+    }
+  }
+
+  .search-description-wrapper {
+    margin: 0 auto;
+    text-align: left;
+    width: 100%;
+
+    > div {
+      text-align: left;
+    }
+  }
+
+  .search-input-and-button-wrapper {
+    margin: 0 auto;
+    text-align: left;
+    width: 100%;
+
+    input {
+      /* 100% minus width of the button */
+      width: calc(100% - 40px);
+    }
+
+    button.go {
+      margin-right: 0;
+    }
+  }
+
+  .icon-search {
+    color: black;
+  }
+}

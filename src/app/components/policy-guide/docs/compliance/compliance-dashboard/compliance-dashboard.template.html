@@ -1,0 +1,63 @@
+<h1>Agency Compliance</h1>
+<p>
+  Agencies are required to perform various tasks in order to satisfy the objectives of the Federal Source Code Policy. Currently, agencies are evaluated on whether they've completed three tasks:
+</p>
+<ol>
+  <li><b>Updated agency policy</b>: Agencies must update their policies to be consistent with the Federal Source Code Policy.</li>
+  <li><b>Completed code inventory</b>: Agencies must inventory all new custom code created after August 2016 (notwithstanding exceptions enumerated in the Federal Source Code Policy).</li>
+  <li><b>Completed open source objective</b>: Agencies must open source at least 20% of all new custom code created after August 2016.</li>
+</ol>
+
+<p>Agencies are evaluated as fully compliant (green), partially compliant (yellow), or non-compliant (red) with the tasks outlined above. An agency's overall compliance is green only if they are green in all categories.
+</p>
+<hr/>
+<div class="dashboard-container">
+  <ul class="dashboard-list">
+    <li class="card dashboard-agency {{status.agency.overall}}" *ngFor="let status of statuses">
+      <div class="dashboard-agency-icon">
+        <img [src]="getIcon(status)" alt="{{status.agency.name}}"/>
+      </div>
+      <div class="dashboard-agency-content">
+        <div class="dashboard-agency-heading">
+          <h3>{{status.agency.name}}</h3>
+          <h4>
+            <span class="{{status.agency.overall}}">
+              <span *ngIf="status.agency.overall=='compliant'">Fully compliant</span>
+              <span *ngIf="status.agency.overall=='partial'">Partially compliant</span>
+              <span *ngIf="status.agency.overall=='noncompliant'">Non-compliant</span>
+            </span>
+          </h4>
+        </div>
+
+        <div class="dashboard-agency-requirements" *ngFor="let requirement of status.requirements">
+          <div *ngIf="requirement.text=='agencyWidePolicy'">
+            <div class="requirement {{requirement.status}} ">
+                <span *ngIf="requirement.status=='compliant'">Agency policy is consistent with the Federal Source Code Policy</span>
+                <span *ngIf="requirement.status=='partial'">Agency policy is being updated for consistency with the Federal Source Code Policy</span>
+                <span *ngIf="requirement.status=='noncompliant'">Agency policy has not been reviewed for consistency with the Federal Source Code Policy</span>
+            </div>
+          </div>
+          <div *ngIf="requirement.text=='openSourceRequirement'">
+            <div class="requirement {{requirement.status}} ">
+                <span *ngIf="requirement.status=='compliant'">Agency has open sourced greater than 20% of their custom developed code.</span>
+                <span *ngIf="requirement.status=='partial'">Agency has open sourced greater than 10% of their custom developed code.</span>
+                <span *ngIf="requirement.status=='noncompliant'">Agency has open sourced less than 10% of their custom developed code.</span>
+            </div>
+          </div>
+          <div *ngIf="requirement.text=='inventoryRequirement'">
+            <div class="requirement {{requirement.status}} ">
+                <span *ngIf="requirement.status=='compliant'">Agency has inventoried 100% of new custom code.</span>
+                <span *ngIf="requirement.status=='partial'">Agency has inventoried more than 50% of new custom code.</span>
+                <span *ngIf="requirement.status=='noncompliant'">Agency has inventoried less than 50% of new custom code.</span>
+            </div>
+          </div>
+        </div>
+        <div class="dashboard-agency-link" *ngIf="status.agency.codePath != null">
+            <a toggle-menu routerLink="{{status.agency.codePath}}" routerLinkActive="current">Explore the code</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<p><i>Last updated: {{updated}}</i></p>

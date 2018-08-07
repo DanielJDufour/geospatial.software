@@ -1,0 +1,56 @@
+@import '~@code.gov/code-gov-style/_sass/_variables';
+
+.autocomplete-result {
+  display: block;
+  padding: 0.5em;
+  text-decoration: none;
+  text-transform: none;
+
+  &::after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: lighten(#1c4772, 40);
+  }
+
+  .icon {
+    float: left;
+    height: 2em;
+    margin-right: 0.5em;
+    width: 2em;
+
+    img {
+      display: block;
+      height: auto;
+      width: 100%;
+    }
+
+    i {
+      font-size: 2rem;
+      margin-top: -0.1rem;
+      padding: .3rem;
+      padding-top: 0;
+    }
+  }
+
+  .info {
+    line-height: 3em;
+    overflow: hidden;
+    vertical-align: center;
+
+    p {
+      color: $color-gray-dark;
+      font-size: 0.9em;
+      line-height: 28px;
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+}

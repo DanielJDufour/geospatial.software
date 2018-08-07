@@ -1,0 +1,10 @@
+@import '~@code.gov/code-gov-style/_sass/_variables';
+
+.agencies-content {
+  background-color: $color-white;
+  padding: 2.5em 1.5em;
+
+  @media screen and (min-width: $extra-large-screen) {
+    padding: 2.5em 2em;
+  }
+}

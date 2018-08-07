@@ -1,0 +1,31 @@
+@import '~@code.gov/code-gov-style/_sass/_variables';
+
+.mobile-menu-button .hamburger {
+  background-color: transparent;
+  border-radius: 4px;
+  float: left;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: 2px;
+  width: 44px;
+
+  @media screen and (min-width: $small-screen) {
+    display: none;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: transparent !important;
+    box-shadow: none;
+    opacity: 1;
+  }
+
+  .hamburger-inner,
+  .hamburger-inner::before,
+  .hamburger-inner::after {
+    background-color: #485567;
+  }
+
+}

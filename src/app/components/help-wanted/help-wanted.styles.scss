@@ -1,0 +1,178 @@
+@import '~@code.gov/code-gov-style/_sass/_variables';
+
+#help-wanted-filter-section {
+  @extend .width-quarter;
+
+  h4 {
+    color: $color-black;
+    font-family: $header-font-family;
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 5.5rem;
+    margin-bottom: 0;
+  }
+
+  h5 {
+    font-family: Helvetica, $header-font-family;
+  }
+
+  a {
+    font-weight: normal;
+  }
+}
+
+.help-wanted-filter {
+
+  h5 {
+    color: $color-black;
+    margin-top: 5px;
+    margin-bottom: 4px;
+  }
+
+  ul {
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+    font-size: 0.8em;
+
+    label {
+      span {
+        display: inline-block;
+        vertical-align: top;
+        width: calc(100% - 30px);
+      }
+    }
+  }
+
+  // USWDS usa-unstyled-list workaround - webpage and mobile form
+  .filter-bottom-padding {
+    padding-bottom: 5px;
+  }
+}
+
+.help-wanted-results {
+  @extend .width-three-quarters;
+}
+
+.help-wanted-content-header {
+  border-bottom: 1px solid $color-gray-lighter;
+  margin-bottom: 2rem;
+
+  h4 {
+    color: $color-black;
+    float: left;
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 5.5rem;
+    margin-bottom: 0;
+  }
+
+  &::after {
+    clear: both;
+    content: '';
+    display: block;
+  }
+}
+
+.help-wanted-tabs {
+  float: right;
+  line-height: 5.5rem;
+
+  li {
+    display: inline-block;
+    font-size: 1.2em;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    &.active {
+      a {
+        border-bottom: 4px solid $brand-teal-medium;
+        color: $color-black;
+      }
+    }
+
+    a {
+      border-bottom: 4px solid transparent;
+      color: $color-gray-light;
+      font-weight: bold;
+      padding-bottom: 0.5rem;
+      padding-top: 0.5rem;
+      text-decoration: none;
+
+      &:hover {
+        color: $color-black;
+      }
+    }
+  }
+}
+
+.help-wanted-content {
+  margin-bottom: 4rem;
+}
+
+.help-wanted-content-items {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.help-wanted-content-item {
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+
+@media screen and (max-width: 600px) {
+
+  .help-wanted-results {
+    width: 100%;
+
+    .help-wanted-content-header {
+      float: none;
+
+      #filter-popup-trigger-button {
+        width: 15rem;
+      }
+
+    }
+  }
+
+  .filter-form-popup {
+
+    background-color: $color-gray-second-lightest;
+    bottom: 0;
+    left: -100%;
+    overflow: scroll;
+    padding: 0.5rem;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+    &.display {
+      left: 0;
+      transition: .5s;
+    }
+
+    .close-button-wrapper {
+      padding: 0.5rem;
+      text-align: right;
+
+      .close-button {
+        font-size: 4rem;
+      }
+    }
+
+    h4 {
+      color: black;
+      font-family: $header-font-family;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    h5 {
+      font-family: $header-font-family;
+    }
+
+  }
+
+}

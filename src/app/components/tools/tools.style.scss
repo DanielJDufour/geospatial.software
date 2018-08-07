@@ -1,0 +1,13 @@
+@import '~@code.gov/code-gov-style/_sass/_variables';
+
+.tool {
+  padding: 2.5em 1.5em;
+
+  @media screen and (min-width: $medium-screen) {
+    @include width-three-quarters();
+  }
+
+  @media screen and (min-width: $extra-large-screen) {
+    padding: 2.5em 2em;
+  }
+}

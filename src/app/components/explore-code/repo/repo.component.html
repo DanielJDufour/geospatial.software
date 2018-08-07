@@ -1,0 +1,86 @@
+<div class="repo-general">
+  <section *ngIf="repo" class="repo-container indented">
+    <div>
+        <ul class="breadcrumbs">
+          <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="/explore-code/agencies/{{repo.agency.acronym}}">{{repo.agency.acronym}}</a></li>
+          <li>{{repo.name}}</li>
+        </ul>
+      </div>
+    <header>
+      <div class="repo-header-container">
+        <h2>{{ repo.name }}</h2>
+        <span *ngIf="repo.date?.metadataLastUpdated" class="updated">
+          <div>Last updated on {{repo.date.metadataLastUpdated | date: "MM/dd/yy"}}</div>
+        </span>
+        <span *ngFor="let tag of repo.tags">
+          <button
+            *ngIf="tag"
+            [routerLink]="['/search']"
+            [queryParams]="{ q: tag }"
+            class="tag"
+          >
+            {{ tag }}
+          </button>
+        </span>
+        <ul class="repo-features">
+            <li>
+              <span *ngIf="repo.permissions?.usageType === 'openSource'"><i class="icon icon-ok-circled2"></i>Open Source</span>
+              <span *ngIf="repo.permissions?.usageType === 'governmentWideReuse'"><i class="icon icon-arrows-cw"></i>Government-Wide Reuse</span>
+            </li>
+            <span *ngIf="repo.permissions?.licenses && repo.permissions?.licenses?.length > 0 && repo.permissions?.licenses[0]?.name">
+              <li>
+                <i class="icon icon-certificate"></i>
+                <span>{{ repo.permissions?.licenses[0]?.name }}</span>
+              </li>
+            </span>
+            <span *ngIf="repo.contact.laborHours > 0">
+              <li>
+                <i class="icon icon-hourglass-end"></i>
+                {{repo.contact.laborHours}} hours
+              </li>
+            </span>
+            <span *ngIf="repo.languages?.length > 0">
+              <li>
+                <i class="icon icon-code"></i>
+                <span *ngFor="let language of repo.languages; let last=last" class="language"
+                  [ngClass]="{last: last}">
+                  {{ language }}<span class="comma">,</span>
+                </span>
+              </li>
+            </span>
+            <span *ngIf="repo.contact?.email | isdefined">
+              <li>
+                <i class="icon icon-mail"></i>
+                <a href="mailto:{{repo.contact.email}}?Subject=Contribution%20Inquiry" target="_top">
+                  {{repo.contact.email}}</a>
+              </li>
+          </span>
+
+          </ul>
+        <p>{{repo.description}}</p>
+        <br>
+        <div *ngIf="repo.additional_data">
+          <div class="metadata-entry" *ngFor="let key of getKeys(repo.additional_data)">
+            <div class="metadata-key" [textContent]="clean(key)"></div>
+            <div class="metadata-value" *ngIf="isArray(repo.additional_data[key])">
+              <div *ngFor="let value of repo.additional_data[key]" [textContent]="value"></div>
+            </div>
+            <div class="metadata-value" *ngIf="!isArray(repo.additional_data[key])">
+              <a *ngIf="isURL(repo.additional_data[key])" [href]="repo.additional_data[key]" target="_blank">
+                <div [textContent]="repo.additional_data[key]"></div>
+              </a>
+              <div *ngIf="!isURL(repo.additional_data[key])" [textContent]="repo.additional_data[key]"></div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <a *ngIf="getRepositoryUrl() | isdefined" href="{{ getRepositoryUrl() }}">
+          <button class="button">Visit Repo</button>
+        </a>
+      </div>
+    </header>
+
+  </section>
+</div>
+<modal></modal>
